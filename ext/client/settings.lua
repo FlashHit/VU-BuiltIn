@@ -97,7 +97,7 @@ local function patchOptionsGraphAsset(instance)
 		-- If the popup screen asset is not loaded yet we register
 		-- a load handler that will be called once after it's loaded
 		-- and assign it to the [screen] property.
-		ResourceManager:RegisterInstanceLoadHandlerOnce(Guid('6609DF6B-E5CD-11DF-938F-855C96D24F62'), Guid('283B6A4B-B9FE-B798-9922-C35388C4DF40'), function(instance)
+		ResourceManager:RegisterInstanceLoadHandlerOnce(Guid('6609DF6B-E5CD-11DF-938F-855C96D24F62'), Guid('283B6A4B-B9FE-B798-9922-C35388C4DF40'), stateNode, function(stateNode, instance)
 			stateNode.screen = UIScreenAsset(instance)
 		end)
 	else
