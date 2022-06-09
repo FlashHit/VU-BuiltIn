@@ -155,9 +155,7 @@ local function patchTabWidget(instance)
 end
 
 Events:Subscribe('Extension:Loaded', function()
-	ResourceManager:RegisterInstanceLoadHandler(OptionsGraph.Partition, OptionsGraph.Asset, function(instance)
-		patchOptionsGraphAsset(instance)
-	end)
+	ResourceManager:RegisterInstanceLoadHandler(OptionsGraph.Partition, OptionsGraph.Asset, patchOptionsGraphAsset)
 
 	local optionsGraphAsset = ResourceManager:FindInstanceByGuid(OptionsGraph.Partition, OptionsGraph.Asset)
 
@@ -166,9 +164,7 @@ Events:Subscribe('Extension:Loaded', function()
 	end
 
 	for _, lookupData in pairs(AllOptions) do
-		ResourceManager:RegisterInstanceLoadHandler(lookupData.Partition, lookupData.TabWidget, function(instance)
-			patchTabWidget(instance)
-		end)
+		ResourceManager:RegisterInstanceLoadHandler(lookupData.Partition, lookupData.TabWidget, patchTabWidget)
 
 		local tabWidget = ResourceManager:FindInstanceByGuid(lookupData.Partition, lookupData.TabWidget)
 
