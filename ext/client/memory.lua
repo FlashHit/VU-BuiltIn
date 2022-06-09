@@ -22,19 +22,22 @@ Console:Register('DrawMemoryStats', 'Draw VeniceEXT memory stats for all loaded 
 	end
 end)
 
+local color = Vec4(0, 1, 0, 1)
+
 Events:Subscribe('UI:DrawHud', function()
 	if drawMemoryStats then
 		local stats = BuiltinUtils:GetTotalMemoryUsage()
 
+		local currentX = 20
 		local currentY = 20
+		local scale = 1.0
 
-		DebugRenderer:DrawText2D(20, currentY, '[Mod memory usage]', Vec4(0, 1, 0, 1), 1.0)
-		currentY = currentY + 20
+		DebugRenderer:DrawText2D(currentX, currentY, '[Mod memory usage]', color, scale)
 
 		for mod, usage in pairs(stats) do
-			local usageMb = string.format('%.2f', usage / 1024.0 / 1024.0)
-			DebugRenderer:DrawText2D(20, currentY, mod .. ' => ' .. usageMb .. 'MB ('.. tostring(usage) .. ')', Vec4(0, 1, 0, 1), 1.0)
 			currentY = currentY + 20
+			local usageMb = string.format('%.2f', usage / 1024.0 / 1024.0)
+			DebugRenderer:DrawText2D(currentX, currentY, mod .. ' => ' .. usageMb .. 'MB (' .. tostring(usage) .. ')', color, scale)
 		end
 	end
 end)
