@@ -175,9 +175,6 @@ Events:Subscribe('Extension:Loaded', function()
 end)
 
 Hooks:Install('UI:PushScreen', 1, function(hook, screen, priority, parentGraph, stateNodeGuid)
-	--print('Pushing screen')
-	--print(stateNodeGuid)
-
 	if stateNodeGuid == CustomOptionsStateNodeGuid then
 		--print('Opened custom settings')
 		WebUI:ExecuteJS('DispatchAction(actions.SHOW_SETTINGS_POPUP, { show: true });')
